@@ -12,6 +12,7 @@ use Orchestra\Testbench\TestCase;
 
 class LaravelMenuTest extends TestCase
 {
+
     public function setUp()
     {
         parent::setUp();
@@ -212,11 +213,9 @@ class LaravelMenuTest extends TestCase
         app(HttpKernelContract::class)->handle($request);
 
         $this->assertEquals(file_get_contents(__DIR__ . '/stuff/menu.xml'), $menu->render([
-            'data' => [
-                'class'        => 'sidebar-menu',
-                'childClass'   => 'treeview',
-                'childUlClass' => 'treeview-menu',
-            ],
+            'class'        => 'sidebar-menu',
+            'childClass'   => 'treeview',
+            'childUlClass' => 'treeview-menu',
         ]));
 
     }

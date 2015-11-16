@@ -101,10 +101,17 @@ class Menu
         return $this;
     }
 
-    public function render(array $options = [])
+    /**
+     * Render the menu
+     *
+     * @param array $data
+     * @param null  $view
+     *
+     * @return string
+     */
+    public function render($data = [], $view = null)
     {
-        $view = array_get($options, 'view', MenuManager::PLUGIN_NAME . '::master_menu');
-        $data = array_get($options, 'data', []);
+        $view = $view ? : MenuManager::PLUGIN_NAME . '::master_menu';
 
         return $this->manager->getView()->make($view, ['menu' => $this], $data)
             ->render();

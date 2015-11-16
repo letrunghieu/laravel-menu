@@ -16,7 +16,7 @@
             Multilevel
             
         </a>
-        <ul class="menu treeview-menu">
+        <ul class="menu submenu treeview-menu">
             <li class="menuitem item ">
         <a href="#">
             
@@ -31,7 +31,7 @@
             Level 1: multi
             
         </a>
-        <ul class="menu treeview-menu">
+        <ul class="menu submenu treeview-menu">
             <li class="menuitem item active">
         <a href="http://localhost/foo/bar/1/view">
             
@@ -46,7 +46,7 @@
             Level 2: multi
             fa fa-angle-left
         </a>
-        <ul class="menu treeview-menu">
+        <ul class="menu submenu treeview-menu">
             <li class="menuitem item ">
         <a href="#">
             <i></i>
