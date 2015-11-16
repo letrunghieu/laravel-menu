@@ -55,13 +55,12 @@ class MenuManager
      * Create new menu from this manager
      *
      * @param string $label
-     * @param string $id
      *
      * @return Menu
      */
-    public function createMenu($label = '', $id = '')
+    public function createMenu($label = '')
     {
-        return new Menu($this, $label, $id);
+        return new Menu($this, $label);
     }
 
     /**

@@ -52,7 +52,7 @@ class Menu
      *
      * @return Menu
      */
-    public function addLink($text, array $url, $options = [])
+    public function addLink($text, array $url = [], $options = [])
     {
         $linkUrl = '#';
         $defaultIsActive = false;
@@ -128,13 +128,15 @@ class Menu
 
     /**
      * @param string $label
+     *
+     * @return Menu
      */
     public function setLabel($label)
     {
         $this->label = $label;
+
+        return $this;
     }
-
-
 
     /**
      * Add new item to this menu

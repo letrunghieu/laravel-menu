@@ -1,0 +1,64 @@
+<ul class="menu sidebar-menu">
+        <li class="header">
+        Main Navigation
+    </li>
+                <li class="menuitem item ">
+        <a href="#">
+            
+            a
+            
+        </a>
+    </li>
+
+            <li class="menuitem treeview active">
+        <a href="#">
+            
+            Multilevel
+            
+        </a>
+        <ul class="menu treeview-menu">
+            <li class="menuitem item ">
+        <a href="#">
+            
+            Level 1: single
+            
+        </a>
+    </li>
+
+            <li class="menuitem treeview ">
+        <a href="#">
+            
+            Level 1: multi
+            
+        </a>
+        <ul class="menu treeview-menu">
+            <li class="menuitem item active">
+        <a href="http://localhost/foo/bar/1/view">
+            
+            Level 2: single
+            
+        </a>
+    </li>
+
+            <li class="menuitem treeview ">
+        <a href="#">
+            
+            Level 2: multi
+            fa fa-angle-left
+        </a>
+        <ul class="menu treeview-menu">
+            <li class="menuitem item ">
+        <a href="#">
+            <i></i>
+            Level 3: single
+            
+        </a>
+    </li>
+
+    </ul>    </li>
+
+    </ul>    </li>
+
+    </ul>    </li>
+
+    </ul>

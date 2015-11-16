@@ -177,7 +177,8 @@ class LaravelMenuTest extends TestCase
 
     }
 
-    public function testAddSubMenu() {
+    public function testAddSubMenu()
+    {
         /** @var Menu $menu */
         $menu = \Menu::menu();
         $menu->addSubMenu(\Menu::createMenu());
@@ -185,6 +186,39 @@ class LaravelMenuTest extends TestCase
         $items = $menu->getItems();
 
         $this->assertInstanceOf(Menu::class, $items[0]['item']);
+    }
+
+    public function testRenderMenu()
+    {
+        /** @var Menu $menu */
+        $menu = \Menu::menu();
+        $menu->setLabel('Main Navigation')
+            ->addLink('a', []);
+
+        /** @var Menu $submenu */
+        $submenu = \Menu::createMenu('Multilevel');
+        $submenu->addLink('Level 1: single')
+            ->addSubMenu(\Menu::createMenu('Level 1: multi')
+                ->addLink('Level 2: single', ['route' => ['foo.bar.view', 'id' => 1]])
+                ->addSubMenu(\Menu::createMenu('Level 2: multi')
+                    ->addLink('Level 3: single', [], ['before' => '<i></i>'])
+                    , ['after' => 'fa fa-angle-left']
+                )
+            );
+
+        $menu->addSubMenu($submenu, ['url_def' => ['route_pattern' => 'foo.*']]);
+
+        $request = Request::create('/foo/bar/1/view', 'GET', ['a' => 'foo', 'b' => ['bar', 'baz']]);
+        app(HttpKernelContract::class)->handle($request);
+
+        $this->assertEquals(file_get_contents(__DIR__ . '/stuff/menu.xml'), $menu->render([
+            'data' => [
+                'class'        => 'sidebar-menu',
+                'childClass'   => 'treeview',
+                'childUlClass' => 'treeview-menu',
+            ],
+        ]));
+
     }
 
     public function provideMenuItemUrlDefData()
