@@ -21,13 +21,11 @@ class Menu
      *
      * @param MenuManager $manager
      * @param string      $label
-     * @param string      $id
      */
-    public function __construct(MenuManager $manager, $label = '', $id = '')
+    public function __construct(MenuManager $manager, $label = '')
     {
         $this->manager = $manager;
         $this->label = $label;
-        $this->id = $id;
     }
 
     /**
@@ -46,14 +44,6 @@ class Menu
     }
 
     /**
-     * @return string
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
      * Add new link
      *
      * @param string $text
@@ -67,8 +57,12 @@ class Menu
         $linkUrl = '#';
         $defaultIsActive = false;
         if ($to = array_get($url, 'to')) {
-            $linkUrl = $this->manager->getUrl()->to($url);
+            $linkUrl = $this->manager->getUrl()->to($to);
         } elseif ($route = array_get($url, 'route')) {
+            if (!is_array($route)) {
+                $route = [$route];
+            }
+
             $routeName = array_shift($route);
             $routeParams = $route;
 
@@ -78,6 +72,10 @@ class Menu
                 'route_param' => $routeParams,
             ];
         } elseif ($action = array_get($url, 'action')) {
+            if (!is_array($action)) {
+                $action = [$action];
+            }
+
             $actionName = array_shift($action);
 
             $linkUrl = $this->manager->getUrl()->action($actionName, $action);
@@ -141,19 +139,22 @@ class Menu
         $nextTo = array_get($options, 'next_to');
         $position = false;
         foreach ($this->items as $index => $m) {
-            if ($m instanceof Menu && $nextTo == $m->getId()) {
+            if ($m['id'] == $nextTo) {
                 $position = $index;
             }
         }
+
         $newMenu = [
             'item'      => $item,
             'before'    => array_get($options, 'before', ''),
             'after'     => array_get($options, 'after', ''),
             'url_def'   => array_get($options, 'url_def'),
             'is_active' => array_get($options, 'is_active'),
+            'id'        => array_get($options, 'id'),
         ];
-        if ($position) {
-            array_splice($this->items, $position, 0, [$newMenu]);
+
+        if ($position !== false) {
+            array_splice($this->items, $position + 1, 0, [$newMenu]);
         } else {
             $this->items[] = $newMenu;
         }

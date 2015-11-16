@@ -45,7 +45,7 @@ class MenuManager
     public function menu($name = 'default')
     {
         if (!isset($this->menus[$name])) {
-            $this->menus[] = new Menu($this);
+            $this->menus[$name] = new Menu($this);
         }
 
         return $this->menus[$name];
