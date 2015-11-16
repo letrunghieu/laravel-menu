@@ -127,6 +127,16 @@ class Menu
     }
 
     /**
+     * @param string $label
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+    }
+
+
+
+    /**
      * Add new item to this menu
      *
      * @param mixed $item

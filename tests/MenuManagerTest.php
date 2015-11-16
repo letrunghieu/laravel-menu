@@ -37,6 +37,15 @@ class MenuManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->_manager->isActive([]));
     }
 
+    public function testCreateNewMenu() {
+        $this->_manager->menu()
+            ->setLabel('Default menu');
+
+        $this->assertCount(1, $this->_manager->getMenus());
+
+        $this->assertEquals('Default menu', $this->_manager->menu('default')->getLabel());
+    }
+
     public function provideMenuItemCallableData()
     {
         return [
