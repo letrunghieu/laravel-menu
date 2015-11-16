@@ -111,10 +111,10 @@ class MenuManager
             $result = true;
             foreach ($urlDef as $method => $value) {
                 if (!is_array($value)) {
-                    $result = $result && call_user_func("if_" . $method, $value);
+                    $result = $result && call_user_func("if_" . $method, [$value]);
                 } else {
                     foreach ($value as $k => $v) {
-                        $result = $result && call_user_func("if_" . $menuItem, $k, $v);
+                        $result = $result && call_user_func("if_" . $method, $k, $v);
                     }
                 }
             }
