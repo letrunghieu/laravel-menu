@@ -2,6 +2,7 @@
 
 namespace HieuLe\LaravelMenu;
 
+use HieuLe\Active\ActiveServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelMenuServiceProvider extends ServiceProvider
@@ -22,5 +23,7 @@ class LaravelMenuServiceProvider extends ServiceProvider
         $this->app->singleton('menu.manager', function ($app) {
             return new MenuManager($app['view'], $app['url']);
         });
+
+        $this->app->register(ActiveServiceProvider::class);
     }
 }

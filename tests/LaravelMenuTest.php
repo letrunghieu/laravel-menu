@@ -283,7 +283,6 @@ class LaravelMenuTest extends TestCase
     {
         return [
             LaravelMenuServiceProvider::class,
-            ActiveServiceProvider::class,
         ];
     }
 
